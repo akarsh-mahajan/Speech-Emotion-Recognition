@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
+import webbrowser
 import librosa
 import librosa.display
 import numpy as np
@@ -184,7 +184,9 @@ def threading_rec(x):
             print("Data sent to ThingSpeak successfully.")
         else:
             print("Failed to send data to ThingSpeak.")
-
+    
+    elif x == 5:
+        webbrowser.open('https://thingspeak.com/channels/2124840')
 
 # Recording function
 def record_audio():
@@ -257,6 +259,7 @@ record_btn = Button(voice_rec, text="Record Audio", width=15, height=2, bg="#d6f
 # Play button
 play_btn = Button(voice_rec, text="Play Recording", width=15, height=2, bg="#d6f26f", fg="black", font=("Arial", 12, "bold"), command=lambda m=3: threading_rec(m))
 analyze_btn = Button(voice_rec, text="Analyze audio", width=15, height=2, bg="#d6f26f", fg="black", font=("Arial", 12, "bold"), command=lambda m=4: threading_rec(m))
+analysis_btn = Button(voice_rec, text="ThingSpeak Analysis", width=19, height=2, bg="#d6f26f", fg="black", font=("Arial", 12, "bold"), command=lambda m=4: threading_rec(m))
 
 # Add an empty row and column to center the buttons
 # voice_rec.grid_rowconfigure(3, weight=1)
@@ -267,6 +270,7 @@ record_btn.grid(row=1, column=1, sticky="nswe", padx=700, pady=50)
 # stop_btn.grid(row=1, column=1, sticky="nswe",padx=700, pady=50)
 play_btn.grid(row=2, column=1, sticky="nswe",padx=700, pady=50)
 analyze_btn.grid(row=3, column=1, sticky="nswe",padx=700, pady=50)
+analysis_btn.grid(row=4, column=1, sticky="nswe",padx=700, pady=50)
 
 voice_rec.mainloop()
 
